@@ -17,5 +17,6 @@ RUN chmod +x /opt/startFPMWithDockerEnvs.php
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD index.php /code/index.php
 
+WORKDIR /code
 CMD ["supervisord"]
 

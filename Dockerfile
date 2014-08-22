@@ -7,6 +7,10 @@ RUN echo 'deb http://packages.dotdeb.org wheezy-php55 all' | tee /etc/apt/source
     mkdir -p /data/logs && \
     rm -rf /etc/php5/fpm/pool.d
 
+RUN apt-get install -y python-setuptools
+RUN easy_install pip
+RUN pip install supervisor-stdout
+
 ADD php-fpm.conf /etc/php5/fpm/php-fpm.conf
 ADD pool.d /etc/php5/fpm/pool.d
 ADD default /etc/nginx/sites-available/default

@@ -22,5 +22,8 @@ ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD index.php /code/index.php
 
 WORKDIR /code
+
+EXPOSE 3000
+
 CMD ["supervisord"]
 

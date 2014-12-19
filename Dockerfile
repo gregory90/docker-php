@@ -1,6 +1,10 @@
-FROM gregory90/nginx:latest
+FROM gregory90/nginx:1.7.8
 
-RUN echo 'deb http://packages.dotdeb.org wheezy-php55 all' | tee /etc/apt/sources.list.d/php55.list && \
+RUN \
+    echo 'deb http://packages.dotdeb.org wheezy all\ndeb-src http://packages.dotdeb.org wheezy all' | tee /etc/apt/sources.list.d/dotdeb.list && \
+    wget http://www.dotdeb.org/dotdeb.gpg && \
+    apt-key add dotdeb.gpg && \
+    echo 'deb http://packages.dotdeb.org wheezy-php56 all' | tee /etc/apt/sources.list.d/php56.list && \
     apt-get update && \
     apt-get install -y php5-cli php5-curl php5-fpm php5-gd php5-mcrypt php5-mysql php5-sqlite php5-intl php5-redis supervisor && \
     mkdir -p /code && \
@@ -10,10 +14,12 @@ RUN echo 'deb http://packages.dotdeb.org wheezy-php55 all' | tee /etc/apt/source
 RUN apt-get install -y python-setuptools
 RUN easy_install pip
 RUN pip install supervisor-stdout
+ADD supervisor_stdout.py /usr/local/lib/python2.7/dist-packages/supervisor_stdout.py
 
 ADD php-fpm.conf /etc/php5/fpm/php-fpm.conf
 ADD pool.d /etc/php5/fpm/pool.d
 ADD default /etc/nginx/sites-available/default
+ADD default /etc/nginx/sites-enabled/default
 ADD php.ini /etc/php5/fpm/php.ini
 ADD php-cli.ini /etc/php5/cli/php.ini
 ADD startFPMWithDockerEnvs.php /opt/startFPMWithDockerEnvs.php

@@ -10,7 +10,7 @@ foreach($_SERVER as $envName=>$envVal ) {
 
         if($envVal == "") continue;
 
-        `echo "env[$envName] = $envVal" >>$confFile`;
+        `echo "env[$envName] = \"$envVal\"" >>$confFile`;
         echo "ADDED    $envName\n";
 }
 

@@ -1,4 +1,4 @@
-FROM gregory90/nginx:1.7.8
+FROM gregory90/nginx:1.7.9
 
 RUN \
     echo 'deb http://packages.dotdeb.org wheezy all\ndeb-src http://packages.dotdeb.org wheezy all' | tee /etc/apt/sources.list.d/dotdeb.list && \

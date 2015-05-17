@@ -22,8 +22,6 @@ ADD default /etc/nginx/sites-available/default
 ADD default /etc/nginx/sites-enabled/default
 ADD php.ini /etc/php5/fpm/php.ini
 ADD php-cli.ini /etc/php5/cli/php.ini
-ADD startFPMWithDockerEnvs.php /opt/startFPMWithDockerEnvs.php
-RUN chmod +x /opt/startFPMWithDockerEnvs.php
 ADD supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ADD index.php /code/index.php
 

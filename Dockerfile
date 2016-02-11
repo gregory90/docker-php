@@ -1,10 +1,10 @@
 FROM gregory90/nginx:1.9.1
 
 RUN \
-    echo 'deb http://packages.dotdeb.org wheezy all\ndeb-src http://packages.dotdeb.org wheezy all' | tee /etc/apt/sources.list.d/dotdeb.list && \
+    echo 'deb http://packages.dotdeb.org jessie all\ndeb-src http://packages.dotdeb.org jessie all' | tee /etc/apt/sources.list.d/dotdeb.list && \
     wget http://www.dotdeb.org/dotdeb.gpg && \
     apt-key add dotdeb.gpg && \
-    echo 'deb http://packages.dotdeb.org wheezy-php56 all' | tee /etc/apt/sources.list.d/php56.list && \
+    echo 'deb http://packages.dotdeb.org jessie-php56 all' | tee /etc/apt/sources.list.d/php56.list && \
     apt-get update && \
     apt-get install -y php5-cli php5-curl php5-fpm php5-gd php5-mcrypt php5-mysql php5-sqlite php5-intl php5-redis supervisor && \
     mkdir -p /code && \
